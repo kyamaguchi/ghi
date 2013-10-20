@@ -52,6 +52,11 @@ module GHI
               raise OptionParser::InvalidArgument, e.message
             end
           end
+          opts.on(
+            '-k', '--keys <keyname>...', Array, 'show additional values with key(s)'
+          ) do |keys|
+            (assigns[:keys] ||= []).concat keys
+          end
           opts.on('-v', '--verbose') { self.verbose = true }
           opts.on('-w', '--web') { self.web = true }
           opts.separator ''

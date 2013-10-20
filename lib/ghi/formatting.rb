@@ -175,7 +175,7 @@ module GHI
         p = i['pull_request']['html_url'] and l += 2
         c = i['comments']
         l += c.to_s.length + 1 unless c == 0
-        [
+        ([
           " ",
           (i['repo'].to_s.rjust(rmax) if i['repo']),
           format_number(n.to_s.rjust(nmax)),
@@ -184,8 +184,21 @@ module GHI
           (fg('aaaaaa') { c } unless c == 0),
           (fg('aaaaaa') { '↑' } if p),
           (fg(:yellow) { '@' } if a)
-        ].compact.join ' '
+        ] + additional_values(i)).compact.join ' '
       }
+    end
+
+    def additional_values i
+      return unless assigns[:keys]
+      assigns[:keys].map do |key|
+        if key == "user"
+          ("@#{i['user']['login']}" if i['user'])
+        elsif key == "assignee"
+          ("@#{i['assignee']['login']}" if i['assignee'])
+        else
+          i[key]
+        end
+      end
     end
 
     def format_number n
