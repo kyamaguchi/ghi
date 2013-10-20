@@ -1,0 +1,15 @@
+GIT
+  remote: https://github.com/kyamaguchi/ghi.git
+  revision: cf3896996bf600dd3eeeaa93fb6ca06f04a3a626
+  specs:
+    ghi (0.9.0.20130912)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ghi!
