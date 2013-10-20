@@ -179,14 +179,11 @@ module GHI
           " ",
           (i['repo'].to_s.rjust(rmax) if i['repo']),
           format_number(n.to_s.rjust(nmax)),
-          ("@#{i['user']['login']}" if i['user']),
-          ("→ @#{i['assignee']['login']}" if i['assignee']),
           truncate(title, l),
           format_labels(labels),
           (fg('aaaaaa') { c } unless c == 0),
           (fg('aaaaaa') { '↑' } if p),
-          (fg(:yellow) { '@' } if a),
-          (i['html_url'] if i['html_url'])
+          (fg(:yellow) { '@' } if a)
         ].compact.join ' '
       }
     end
